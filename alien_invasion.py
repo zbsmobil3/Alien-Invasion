@@ -1,5 +1,5 @@
 import sys
-import pygame
+#import pygame-ce
 
 if __name__ == '__main__':
     pass
