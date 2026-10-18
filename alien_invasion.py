@@ -2,6 +2,7 @@ import sys
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 
 class AlienInvasion:
@@ -19,6 +20,8 @@ class AlienInvasion:
 
         self.bg_clr=(230,230,230)
 
+        self.ship=Ship(self)
+
     def run_game(self):
         """Houses main gameloop"""
 
@@ -30,6 +33,7 @@ class AlienInvasion:
 
             #Redraw the screen
             self.screen.fill(self.bg_clr)
+            self.ship.blitme()
 
             #Make the most recently drawn screen visible
             pygame.display.flip()
