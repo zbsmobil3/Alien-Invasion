@@ -95,6 +95,9 @@ class AlienInvasion:
             self._create_fleet()
             self.ship.center_ship()
 
+            #hide the mouse cursor.
+            pygame.mouse.set_visible(False)
+
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
         if event.key == pygame.K_RIGHT:
@@ -217,7 +220,10 @@ class AlienInvasion:
 
             sleep(0.5) #pause.
         else:
+            #I'll probably put this in its own func for the final project
+            #For readability as a end of wave sort of thing. Abstraction.
             self.game_active = False
+            pygame.mouse.set_visible(True)
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
