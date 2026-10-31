@@ -4,6 +4,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
+from scoreboard import Scoreboard
 from button import Button
 from ship import Ship
 from bullet import Bullet
@@ -28,8 +29,9 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion")
         #i'll probably create an icon here later
 
-        #create an instance to store game statistics.
+        #create an instance to store game statistics, and create a scoreboard.
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
 
         self.bg_clr=(230,230,230)
 
@@ -57,10 +59,6 @@ class AlienInvasion:
             
             #redraw the screen
             self._update_screen()
-
-            # Draw the play button if the game is inactive.
-            if not self.game_active:
-                self.play_button.draw_button()
             
             #make the most recently drawn screen visible
             pygame.display.flip()
@@ -236,6 +234,13 @@ class AlienInvasion:
             bullet.draw_bullet()
         self.ship.blitme()
         self.aliens.draw(self.screen)
+
+        #draw the score information.
+        self.sb.show_score()
+
+        #draw the play button if the game is inactive.
+        if not self.game_active:
+            self.play_button.draw_button()
         
 
 if __name__ == '__main__':
