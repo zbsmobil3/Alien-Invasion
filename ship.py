@@ -43,7 +43,10 @@ class Ship(Sprite):
         else:
             self.velo*=0.9 #FRICTION
 
-         #update rect object from self.x.
+        if abs(self.velo)>self.settings.ship_speed_limit:
+            self.velo=self.settings.ship_speed_limit * (self.velo/abs(self.velo))
+        
+        #update rect object from self.x.
         self.rect.x += self.velo
         self.x=self.rect.x
         #self.rect.x = self.x  

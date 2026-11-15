@@ -1,6 +1,7 @@
 import sys
 from time import sleep
-import pygame
+import pygame #This was throwing errors for me so i asked ai and it just gave me a slightly different command to
+#run rather than hitting the play button in vs code and that works fine.  
 
 from settings import Settings
 from game_stats import GameStats
