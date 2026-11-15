@@ -145,6 +145,7 @@ class AlienInvasion:
         new_alien.x = x_position
         new_alien.rect.x = x_position
         new_alien.rect.y = y_position
+        new_alien.y=y_position
         self.aliens.add(new_alien)
 
     def _fire_bullet(self):
@@ -217,7 +218,8 @@ class AlienInvasion:
     def _change_fleet_direction(self):
         """Drop the entire fleet and change the fleet's direction."""
         for alien in self.aliens.sprites():
-            alien.rect.y += self.settings.fleet_drop_speed
+            alien.y += self.settings.fleet_drop_speed
+            #alien.rect.y += self.settings.fleet_drop_speed
         self.settings.fleet_direction *= -1
 
     def _ship_hit(self):
