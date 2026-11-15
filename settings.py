@@ -34,7 +34,7 @@ class Settings:
 
     def initialize_dynamic_settings(self):
         """Initialize settings that change throughout the game."""
-        self.ship_speed = 5 #it was too slow
+        self.ship_speed = 0.1 #it was too slow
         self.bullet_speed = 7 #it was too slow
         self.alien_speed = 0.8
 
