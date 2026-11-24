@@ -27,6 +27,7 @@ class AlienInvasion:
         self.settings.screen_height = self.screen.get_rect().height
 
 
+
         pygame.display.set_caption("Alien Invasion")
         #i'll probably create an icon here later
 
@@ -35,6 +36,8 @@ class AlienInvasion:
         self.sb = Scoreboard(self)
 
         self.bg_clr=(230,230,230)
+        self.bg=pygame.image.load('Assets/images/bg.png')
+        self.bg=pygame.transform.scale(self.bg, (2000, 1200))
 
         self.ship=Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -247,6 +250,7 @@ class AlienInvasion:
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
+        #self.screen.blit(self.bg,(0,0))
         self.screen.fill(self.settings.bg_clr)
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
