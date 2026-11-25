@@ -48,4 +48,6 @@ class Alien(Sprite):
         self.rect.x = self.x
         self.t = pygame.time.get_ticks() / 1000.0
         self.bob= 8*math.sin((self.t+self.offset)*2)
+        self.sway= 4*math.sin((self.t+self.offset)*1)
         self.rect.y= self.y+self.bob
+        self.rect.x+=self.sway

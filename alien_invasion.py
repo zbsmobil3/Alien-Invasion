@@ -43,6 +43,8 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
 
+        self.at_edge=False
+
         self._create_fleet()
 
         #start Alien Invasion in an inactive state.
@@ -227,9 +229,15 @@ class AlienInvasion:
     def _check_fleet_edges(self):
         """Respond appropriately if any aliens have reached an edge."""
         for alien in self.aliens.sprites():
-            if alien.check_edges():
-                self._change_fleet_direction()
-                break
+            if not self.at_edge:
+                if alien.check_edges():
+                    self.at_edge=True
+                    time=pygame.time.get_ticks()
+                    self._change_fleet_direction()
+                    while not pygame.time.get_ticks()> time+30:
+                        pass
+                    self.at_edge=False
+                    break
 
     def _check_aliens_bottom(self):
         """Check if any aliens have reached the bottom of the screen."""
