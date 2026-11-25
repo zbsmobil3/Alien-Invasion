@@ -146,7 +146,11 @@ class AlienInvasion:
         """Create an alien and place it in the fleet."""
         num=randint(0,7)
         if not num:
-            new_alien = Alien(self,1)
+            num=randint(0,7)
+            if num:
+                new_alien = Alien(self,1)
+            else:
+                new_alien = Alien(self,3)
         else:
             new_alien = Alien(self,2)
         new_alien.x = x_position
@@ -177,15 +181,24 @@ class AlienInvasion:
         """Respond to bullet-alien collisions."""
         #remove any bullets and aliens that have collided.
         collisions = pygame.sprite.groupcollide(
-                self.bullets, self.aliens, True, True)
+                self.bullets, self.aliens, True, False)
 
         if collisions:
             for aliens in collisions.values():
                 for i in aliens:
-                    if i.type==1:
+                    if i.type==1: #bonus
                         self.stats.score += self.settings.alien_points * 5
                         aliens.remove(i)
-                self.stats.score += self.settings.alien_points * len(aliens)
+                        i.kill()
+                    if i.type==3: #boss
+                        i.hits+=1
+                        if i.hits==2:
+                            self.stats.score += self.settings.alien_points * 3
+                            i.kill()
+                        aliens.remove(i)
+                    else:
+                        i.kill()
+                self.stats.score += self.settings.alien_points * len(aliens) #leftover (just regulars for now)
             self.stats.score += self.settings.alien_points
             self.sb.prep_score()
             self.sb.check_high_score()
