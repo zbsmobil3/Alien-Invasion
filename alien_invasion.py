@@ -146,7 +146,7 @@ class AlienInvasion:
         """Create an alien and place it in the fleet."""
         num=randint(0,7)
         if not num:
-            num=randint(0,7)
+            num=randint(0,5)
             if num:
                 new_alien = Alien(self,1)
             else:

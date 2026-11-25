@@ -15,6 +15,7 @@ class Alien(Sprite):
         self.type=type
         self.hits=hits
 
+
         self.offset=randint(0,400)/200
 
         #load the alien image and set its rect attribute.
