@@ -1,7 +1,7 @@
 import sys
 from time import sleep
-import pygame #This was throwing errors for me so i asked ai and it just gave me a slightly different command to
-#run rather than hitting the play button in vs code and that works fine.  
+import pygame
+from random import *
 
 from settings import Settings
 from game_stats import GameStats
@@ -129,7 +129,7 @@ class AlienInvasion:
         """Create the fleet of aliens."""
         #create an alien and keep adding aliens until there's no room left.
         #spacing between aliens is one alien width and one alien height.
-        alien = Alien(self)
+        alien = Alien(self,2)
         alien_width, alien_height = alien.rect.size
 
         current_x, current_y = alien_width, alien_height
@@ -144,7 +144,11 @@ class AlienInvasion:
 
     def _create_alien(self, x_position, y_position):
         """Create an alien and place it in the fleet."""
-        new_alien = Alien(self)
+        num=randint(0,7)
+        if not num:
+            new_alien = Alien(self,1)
+        else:
+            new_alien = Alien(self,2)
         new_alien.x = x_position
         new_alien.rect.x = x_position
         new_alien.rect.y = y_position
@@ -177,6 +181,10 @@ class AlienInvasion:
 
         if collisions:
             for aliens in collisions.values():
+                for i in aliens:
+                    if i.type==1:
+                        self.stats.score += self.settings.alien_points * 5
+                        aliens.remove(i)
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.stats.score += self.settings.alien_points
             self.sb.prep_score()

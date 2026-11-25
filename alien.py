@@ -5,14 +5,19 @@ import math
 class Alien(Sprite):
     """A class to represent a single alien in the fleet."""
 
-    def __init__(self, ai_game):
+    def __init__(self, ai_game, type):
         """Initialize the alien and set its starting position."""
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
 
+        self.type=type
+
         #load the alien image and set its rect attribute.
-        self.image = pygame.image.load('Assets/images/Enemy2.png')
+        if self.type==2:
+            self.image = pygame.image.load('Assets/images/Enemy2.png')
+        else:
+            self.image = pygame.image.load('Assets/images/Enemy4.png')
         self.image=pygame.transform.scale(self.image, (35, 35))
         self.rect = self.image.get_rect()
 
