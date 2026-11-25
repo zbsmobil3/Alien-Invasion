@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 import math
+from random import *
 
 class Alien(Sprite):
     """A class to represent a single alien in the fleet."""
@@ -13,6 +14,8 @@ class Alien(Sprite):
 
         self.type=type
         self.hits=hits
+
+        self.offset=randint(0,400)/200
 
         #load the alien image and set its rect attribute.
         if self.type==3:
@@ -43,5 +46,5 @@ class Alien(Sprite):
         self.x += self.settings.alien_speed * self.settings.fleet_direction
         self.rect.x = self.x
         self.t = pygame.time.get_ticks() / 1000.0
-        self.bob= 8*math.sin(self.t*2)
+        self.bob= 8*math.sin((self.t+self.offset)*2)
         self.rect.y= self.y+self.bob
